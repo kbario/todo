@@ -1,13 +1,27 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
-    <ion-menu contentId="main-content" type="overlay">
+    <ion-menu contentId="main-content" type="overlay" [side]="'end'">
       <ion-content>
         <ion-list id="inbox-list">
-          <ion-list-header>Inbox</ion-list-header>
-          <ion-note>hi@ionicframework.com</ion-note>
+          <ng-container *ngIf="user$ | async as user; else noUser">
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <ion-list-header>{{ user.displayName }}</ion-list-header>
+                  <ion-fab>
+                    <ion-fab-button>
+                      {{ user.displayName | initials }}
+                    </ion-fab-button>
+                  </ion-fab>
+                </ion-col>
+                <ion-note>{{user.email}}</ion-note>
+              </ion-row>
+            </ion-grid>
+          </ng-container>
 
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-            <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" routerLinkActive="selected">
+            <ion-item routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false"
+              routerLinkActive="selected">
               <ion-icon aria-hidden="true" slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
               <ion-label>{{ p.title }}</ion-label>
             </ion-item>
@@ -27,3 +41,28 @@
     <ion-router-outlet id="main-content"></ion-router-outlet>
   </ion-split-pane>
 </ion-app>
+
+
+<ng-template #noUser>
+  <ion-button (click)="goToSignIn()">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-list-header>no user</ion-list-header>
+        </ion-col>
+        <ion-col style="display: flex" class="ion-justify-content-end">
+          <ion-fab>
+            <ion-fab-button>
+              <ion-avatar>
+                <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+              </ion-avatar>
+            </ion-fab-button>
+          </ion-fab>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-text-end">
+        <ion-note>sign in to todo</ion-note>
+      </ion-row>
+    </ion-grid>
+  </ion-button>
+</ng-template>
