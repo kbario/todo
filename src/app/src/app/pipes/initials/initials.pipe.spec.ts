@@ -1,8 +1,8 @@
-import { InitialsPipe } from './initials.pipe';
+import { InitialsPipe } from './initials.pipe'
 
 describe('InitialsPipe', () => {
   it('create an instance', () => {
-    const pipe = new InitialsPipe();
-    expect(pipe).toBeTruthy();
-  });
-});
+    const pipe = new InitialsPipe()
+    expect(pipe).toBeTruthy()
+  })
+})

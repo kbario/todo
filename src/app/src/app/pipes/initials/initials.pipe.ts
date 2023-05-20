@@ -1,12 +1,15 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform } from '@angular/core'
 
 @Pipe({
-  name: 'initials'
+  name: 'initials',
+  standalone: true,
 })
 export class InitialsPipe implements PipeTransform {
-
   transform(value: string | null): string | undefined {
-    return value?.split(" ").map(x => x.charAt(0)).join().toUpperCase()
+    return value
+      ?.split(' ')
+      .map((x) => x.charAt(0))
+      .join()
+      .toUpperCase()
   }
-
 }

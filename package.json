@@ -9,7 +9,11 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "format": "npm run format:ts && npm run format:html && npm run format:css",
+    "format:ts": "prettier --write --config ./.prettierrc \"src/app/**/*.ts\"",
+    "format:html": "js-beautify --config ./.jsbeautifyrc.json --replace \"src/app/**/*.html\"",
+    "format:css": "prettier --write --config ./.prettierrc \"src/app/**/*.{css,scss}\""
   },
   "private": true,
   "dependencies": {
@@ -60,12 +64,14 @@
     "firebase-tools": "^12.0.1",
     "jasmine-core": "~4.6.0",
     "jasmine-spec-reporter": "~5.0.0",
+    "js-beautify": "^1.14.7",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.0",
     "karma-coverage-istanbul-reporter": "~3.0.2",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
+    "prettier": "2.8.8",
     "ts-node": "^8.3.0",
     "typescript": "~5.0.2"
   },
