@@ -1,27 +1,22 @@
-import { Component } from '@angular/core'
-import { FirebaseApp } from '@angular/fire/app'
+import { Observable } from 'rxjs'
+
 import { Auth, user } from '@angular/fire/auth'
 import { User } from 'firebase/auth'
-import { Observable } from 'rxjs'
-import { InitialsPipe } from './src/app/pipes/initials/initials.pipe'
-import { RouterLinkActive, RouterLink } from '@angular/router'
-import { NgIf, NgFor, AsyncPipe } from '@angular/common'
+
 import { IonicModule } from '@ionic/angular'
+
+import { CommonModule } from '@angular/common'
+import { Component, signal } from '@angular/core'
+import { RouterModule } from '@angular/router'
+
+import { InitialsPipe } from './src/app/pipes/initials/initials.pipe'
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
   standalone: true,
-  imports: [
-    IonicModule,
-    NgIf,
-    NgFor,
-    RouterLinkActive,
-    RouterLink,
-    AsyncPipe,
-    InitialsPipe,
-  ],
+  imports: [IonicModule, CommonModule, RouterModule, InitialsPipe],
 })
 export class AppComponent {
   public appPages = [
@@ -40,4 +35,7 @@ export class AppComponent {
     this.user$ = user(auth)
     // this.user = this.auth.user
   }
+
+  public arst = signal(0)
+  public zxcd = () => this.arst.update(x => x+1)
 }
