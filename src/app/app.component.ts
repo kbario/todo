@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs'
+import { Observable, tap } from 'rxjs'
 
 import { Auth, user } from '@angular/fire/auth'
 import { User } from 'firebase/auth'
@@ -19,21 +19,23 @@ import { InitialsPipe } from './src/app/pipes/initials/initials.pipe'
   imports: [IonicModule, CommonModule, RouterModule, InitialsPipe],
 })
 export class AppComponent {
-  public appPages = [
-    { title: 'Inbox', url: '/folder/inbox', icon: 'mail' },
-    { title: 'Outbox', url: '/folder/outbox', icon: 'paper-plane' },
-    { title: 'Favorites', url: '/folder/favorites', icon: 'heart' },
-    { title: 'Archived', url: '/folder/archived', icon: 'archive' },
-    { title: 'Trash', url: '/folder/trash', icon: 'trash' },
-    { title: 'Spam', url: '/folder/spam', icon: 'warning' },
-  ]
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders']
+  // public appPages = [
+  //   { title: 'Inbox', url: '/folder/inbox', icon: 'mail' },
+  //   { title: 'Outbox', url: '/folder/outbox', icon: 'paper-plane' },
+  //   { title: 'Favorites', url: '/folder/favorites', icon: 'heart' },
+  //   { title: 'Archived', url: '/folder/archived', icon: 'archive' },
+  //   { title: 'Trash', url: '/folder/trash', icon: 'trash' },
+  //   { title: 'Spam', url: '/folder/spam', icon: 'warning' },
+  // ]
+  // public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders']
 
   public user$: Observable<User | null>
+  public asdf: Observable<User | null>
 
   constructor(public auth: Auth) {
     this.user$ = user(auth)
-    // this.user = this.auth.user
+    this.asdf = this.user$.pipe(
+    tap(x=> console.log(x)))
   }
 
   public arst = signal(0)

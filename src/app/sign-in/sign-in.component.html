@@ -1,3 +1,32 @@
-<p>
-  sign-in works!
-</p>
+<app-layout>
+  <div class="flex w-full flex-col items-center justify-center gap-8 p-20">
+    <form [formGroup]="form">
+      <ion-input fill="outline"
+                 label="Email"
+                 type="email"
+                 labelPlacement="floating"
+                 placeholder="example@example.com"
+                 formControlName="email"></ion-input>
+      <ion-input fill="outline"
+                 label="Password"
+                 [type]="showPassword ? 'text' : 'password'"
+                 labelPlacement="floating"
+                 placeholder="asdf123"
+                 formControlName="password"></ion-input>
+      <ion-button mat-button
+              matSuffix
+              (click)="togglePassword()"
+              [type]="showPassword ? 'text' : 'password'">
+        <ng-container [ngSwitch]="showPassword">
+          <ion-icon *ngSwitchCase="true" name="eye-outline"></ion-icon>
+          <ion-icon *ngSwitchCase="false" name="eye-off-outline"></ion-icon>
+        </ng-container>
+      </ion-button>
+    </form>
+
+    <ion-button mat-button
+            (click)="login($event)">sign in</ion-button>
+    <ion-button mat-button
+            (click)="logout()">sign out</ion-button>
+  </div>
+</app-layout>
