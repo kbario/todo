@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing'
 import { IonicModule } from '@ionic/angular'
 
-import { LayoutComponent } from './layout.component'
+import { AccountComponent } from './account.component'
 
-describe('LayoutComponent', () => {
-  let component: LayoutComponent
-  let fixture: ComponentFixture<LayoutComponent>
+describe('AccountComponent', () => {
+  let component: AccountComponent
+  let fixture: ComponentFixture<AccountComponent>
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [LayoutComponent],
+      declarations: [AccountComponent],
       imports: [IonicModule.forRoot()],
     }).compileComponents()
 
-    fixture = TestBed.createComponent(LayoutComponent)
+    fixture = TestBed.createComponent(AccountComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
   }))

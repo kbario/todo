@@ -1,0 +1,26 @@
+<app-layout [header]="'account'">
+
+  <div *ngIf="combinedStream$ | async"
+       class="flex w-full flex-col items-center justify-center gap-8 p-20">
+    <form [formGroup]="form">
+      <ion-input fill="outline"
+                 label="display name"
+                 type="text"
+                 labelPlacement="floating"
+                 placeholder="jimmy blogs"
+                 formControlName="displayName"></ion-input>
+      <ion-input fill="outline"
+                 label="photo url"
+                 type="text"
+                 labelPlacement="floating"
+                 placeholder="https://www.asdf.com"
+                 formControlName="photoURL"></ion-input>
+    </form>
+
+    <ion-button (click)="updateProfile()">update profile</ion-button>
+    <!-- <ion-button mat-button -->
+    <!--         (click)="login($event)">sign in</ion-button> -->
+    <!-- <ion-button mat-button -->
+    <!--         (click)="logout()">sign out</ion-button> -->
+  </div>
+</app-layout>

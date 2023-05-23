@@ -9,7 +9,7 @@ export class InitialsPipe implements PipeTransform {
     return value
       ?.split(' ')
       .map((x) => x.charAt(0))
-      .join()
+      .join('')
       .toUpperCase()
   }
 }

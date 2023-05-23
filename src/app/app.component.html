@@ -3,59 +3,62 @@
     <ion-menu contentId="main-content"
               type="overlay"
               [side]="'end'">
-      <ion-content >
+      <ion-content>
         <ion-list id="inbox-list">
           <ng-container *ngIf="user$ | async as user; else noUser">
             <ion-grid>
               <ion-row style="display: flex;">
                 <ion-col>
-                  <ion-list-header>{{ user.displayName }} kyle bario</ion-list-header>
+                  <ion-list-header>{{ user.displayName }}</ion-list-header>
                   <ion-note>{{user.email}}</ion-note>
                 </ion-col>
                 <ion-col style="display:flex;"
                          class="ion-justify-content-end">
                   <ion-fab>
-                    <ion-fab-button>
-                      {{ user.displayName | initials }}KB
-                    </ion-fab-button>
+                    <ion-menu-toggle auto-hide="false">
+                      <ion-fab-button routerLink='account'>
+                        {{ user.displayName | initials }}
+                      </ion-fab-button>
+                    </ion-menu-toggle>
                   </ion-fab>
                 </ion-col>
               </ion-row>
             </ion-grid>
           </ng-container>
 
-          <!-- <ion-menu-toggle auto-hide="false" -->
-          <!--                  *ngFor="let p of appPages; let i = index"> -->
-          <!--   <ion-item routerDirection="root" -->
-          <!--             [routerLink]="[p.url]" -->
-          <!--             lines="none" -->
-          <!--             detail="false" -->
-          <!--             routerLinkActive="selected"> -->
-          <!--     <ion-icon aria-hidden="true" -->
-          <!--               slot="start" -->
-          <!--               [ios]="p.icon + '-outline'" -->
-          <!--               [md]="p.icon + '-sharp'"></ion-icon> -->
-          <!--     <ion-label>{{ p.title }}</ion-label> -->
-          <!--   </ion-item> -->
-          <!-- </ion-menu-toggle> -->
+          <ion-menu-toggle auto-hide="false"
+                           *ngFor="let p of aboveLinks; let i = index">
+            <ion-item routerDirection="root"
+                      [routerLink]="[p.url]"
+                      lines="none"
+                      detail="false"
+                      routerLinkActive="selected">
+              <ion-icon aria-hidden="true"
+                        slot="start"
+                        [ios]="p.icon + '-outline'"
+                        [md]="p.icon + '-sharp'"></ion-icon>
+              <ion-label>{{ p.title }}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
         </ion-list>
 
-        <!-- <ion-list id="labels-list"> -->
-        <!--   <ion-list-header>Labels</ion-list-header> -->
-        <!---->
-        <!--   <ion-item *ngFor="let label of labels" -->
-        <!--             lines="none"> -->
-        <!--     <ion-icon aria-hidden="true" -->
-        <!--               slot="start" -->
-        <!--               ios="bookmark-outline" -->
-        <!--               md="bookmark-sharp"></ion-icon> -->
-        <!--     <ion-label>{{ label }}</ion-label> -->
-        <!--   </ion-item> -->
-        <!-- </ion-list> -->
+        <ion-menu-toggle auto-hide="false">
+          <ion-item routerDirection="root"
+                    [routerLink]="'/signIn'"
+                    lines="none"
+                    detail="false"
+                    routerLinkActive="selected">
+            <ion-icon aria-hidden="true"
+                      slot="start"
+                      [ios]="'person-circle-outline'"
+                      [md]="'person-circle-sharp'"></ion-icon>
+            <ion-label>{{ (user$ | async) ? 'sign out' : 'sign in'}}</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
       </ion-content>
     </ion-menu>
 
-    <ion-router-outlet  id="main-content"></ion-router-outlet>
+    <ion-router-outlet id="main-content"></ion-router-outlet>
   </ion-split-pane>
 </ion-app>
 

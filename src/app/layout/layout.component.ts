@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { IonicModule } from '@ionic/angular';
+import { Component, Input, OnInit } from '@angular/core'
+import { IonicModule } from '@ionic/angular'
 
 @Component({
   selector: 'app-layout',
@@ -8,13 +8,11 @@ import { IonicModule } from '@ionic/angular';
   standalone: true,
   imports: [IonicModule],
 })
-export class LayoutComponent  implements OnInit {
-
+export class LayoutComponent implements OnInit {
   @Input()
-  header: string = ""
+  header: string = ''
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {}
-
 }
